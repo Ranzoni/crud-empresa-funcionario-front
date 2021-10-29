@@ -4,6 +4,7 @@ import { Company } from 'src/app/models/company';
 import { Address } from 'src/app/models/address';
 import { CompanyService } from 'src/app/services/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViaCepService } from 'src/app/services/via-cep.service';
 
 @Component({
   selector: 'app-create-companies',
@@ -19,7 +20,8 @@ export class CreateCompaniesComponent implements OnInit {
   constructor(private readonly formBuilder: FormBuilder,
       private readonly companyService: CompanyService,
       private readonly router: Router,
-      private readonly activatedRoute: ActivatedRoute) {
+      private readonly activatedRoute: ActivatedRoute,
+      private readonly viaCepService: ViaCepService) {
     let addressCompany: Address = {
       id: 0,
       street: '',
@@ -28,7 +30,6 @@ export class CreateCompaniesComponent implements OnInit {
       neighborhood: '',
       city: '',
       state: '',
-      country: '',
       zipCode: ''
     };
 
@@ -41,15 +42,14 @@ export class CreateCompaniesComponent implements OnInit {
     };
 
     this.form = this.formBuilder.group({
-      name: ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
-      street: ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
+      name: ['', Validators.required],
+      street: ['', Validators.required],
       number: ['', Validators.required],
       address2: [null],
-      neighborhood: ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
-      city: ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
-      state: ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
-      country: ['', Validators.compose([Validators.required, Validators.maxLength(200)])],
-      zipCode: ['', Validators.compose([Validators.required, Validators.maxLength(20)])],
+      neighborhood: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipCode: ['', Validators.required],
       phoneNumber: ['', Validators.required]
     });
   }
@@ -63,7 +63,6 @@ export class CreateCompaniesComponent implements OnInit {
       neighborhood: this.form.value.neighborhood,
       city: this.form.value.city,
       state: this.form.value.state,
-      country: this.form.value.country,
       zipCode: this.form.value.zipCode
     };
 
@@ -88,7 +87,6 @@ export class CreateCompaniesComponent implements OnInit {
     this.form.controls['neighborhood'].setValue(company.address.neighborhood);
     this.form.controls['city'].setValue(company.address.city);
     this.form.controls['state'].setValue(company.address.state);
-    this.form.controls['country'].setValue(company.address.country);
     this.form.controls['zipCode'].setValue(company.address.zipCode);
     this.form.controls['phoneNumber'].setValue(company.phoneNumber);
   }
@@ -103,10 +101,57 @@ export class CreateCompaniesComponent implements OnInit {
   }
 
   save(): void {
+    if (!!this.form.invalid) {
+      this.validator();
+      return;
+    }
+
     if (this.isCreation)
       this.createCompany();
     else
       this.updateCompany();
+  }
+
+  private validator(): void {
+    if (this.form.get('name')?.errors?.required) {
+      alert('O nome é obrigatório');
+      return;
+    }
+
+    if (this.form.get('street')?.errors?.required)  {
+      alert('A rua é obrigatória');
+      return;
+    }
+
+    if (this.form.get('número')?.errors?.required) {
+      alert('O número é obrigatório');
+      return;
+    }
+
+    if (this.form.get('neighborhood')?.errors?.required) {
+      alert('O bairro é obrigatório');
+      return;
+    }
+
+    if (this.form.get('city')?.errors?.required) {
+      alert('A cidade é obrigatória');
+      return;
+    }
+
+    if (this.form.get('state')?.errors?.required) {
+      alert('O estado é obrigatório');
+      return;
+    }
+
+    if (this.form.get('zipCode')?.errors?.required) {
+      alert('O CEP é obrigatório');
+      return;
+    }
+
+    if (this.form.get('phoneNumber')?.errors?.required) {
+      alert('O telefone é obrigatório');
+      return;
+    }
   }
 
   public createCompany(): void {
@@ -131,6 +176,16 @@ export class CreateCompaniesComponent implements OnInit {
     this.companyService.getById(id).subscribe(company => {
       if (!!company)
         this.company = company;
+    });
+  } 
+
+  public getAddressByZipCode(zipCode: string): void {
+    this.viaCepService.getAddressByZipCode(zipCode).subscribe(address => {
+      this.form.controls['street'].setValue(address.logradouro);
+      this.form.controls['neighborhood'].setValue(address.bairro);
+      this.form.controls['city'].setValue(address.localidade);
+      this.form.controls['state'].setValue(address.uf);
+      this.form.controls['zipCode'].setValue(address.cep);
     });
   }
 

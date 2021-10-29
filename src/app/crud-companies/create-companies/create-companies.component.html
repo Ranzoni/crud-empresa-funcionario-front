@@ -1,16 +1,27 @@
 <h2>Cadastro de Empresa</h2>
 
+<div *ngIf="form.invalid"
+    class="alert">
+
+  <div *ngIf="form.value.name.errors?.required">
+    O nome é obrigatório
+  </div>
+  <div *ngIf="form.value.name.errors?.maxlength">
+    O nome tem que ter no máximo 200 caracteres
+  </div>
+
+</div>
+
 <form [formGroup]="form" validate>
     <div>
-        <input id="company-name" formControlName="name" placeholder="Nome"><br />
-        <input id="company-street" formControlName="street" placeholder="Rua"><br />
+        <input id="company-name" formControlName="name" placeholder="Nome" maxlength="200"><br />
+        <input id="company-street" formControlName="street" placeholder="Rua" maxlength="200"><br />
         <input id="company-number" formControlName="number" placeholder="Número"><br />
         <input id="company-address2" formControlName="address2" placeholder="Complemento"><br />
-        <input id="company-neighborhood" formControlName="neighborhood" placeholder="Bairro"><br />
-        <input id="company-city" formControlName="city" placeholder="Cidade"><br />
-        <input id="company-state" formControlName="state" placeholder="Estado"><br />
-        <input id="company-country" formControlName="country" placeholder="País"><br />
-        <input id="company-zip-code" formControlName="zipCode" placeholder="CEP"><br />
+        <input id="company-neighborhood" formControlName="neighborhood" placeholder="Bairro" maxlength="200"><br />
+        <input id="company-city" formControlName="city" placeholder="Cidade" maxlength="200"><br />
+        <input id="company-state" formControlName="state" placeholder="Estado" maxlength="200"><br />
+        <input id="company-zip-code" formControlName="zipCode" placeholder="CEP" maxlength="20"><button (click)="getAddressByZipCode(form.value.zipCode)">Consultar o CEP</button><br />
         <input id="company-phone-number" formControlName="phoneNumber" placeholder="Telefone"><br />
     </div>
 </form>

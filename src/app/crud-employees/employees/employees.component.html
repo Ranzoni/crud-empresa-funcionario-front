@@ -1,0 +1,10 @@
+<button (click)="goToCreateEmployee()">Cadastrar Funcionário</button>
+
+<h2>Funcionários</h2>
+<ul class="employees">
+  <li *ngFor="let employee of employees"
+    [class.selected]="employee === selectedEmployee"
+    (click)="goToCreateEmployeeById(employee.id)">
+    <span class="badge">{{employee.position.name}}</span> {{employee.name}}
+  </li>
+</ul>

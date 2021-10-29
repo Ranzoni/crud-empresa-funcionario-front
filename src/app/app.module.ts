@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateCompaniesComponent } from './crud-companies/create-companies/create-companies.component';
 import { EmployeesComponent } from './crud-employees/employees/employees.component';
 import { MenuComponent } from './menu/menu.component';
+import { CreateEmployeesComponent } from './crud-employees/create-employees/create-employees.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { MenuComponent } from './menu/menu.component';
     CompaniesComponent,
     CreateCompaniesComponent,
     EmployeesComponent,
-    MenuComponent
+    MenuComponent,
+    CreateEmployeesComponent
   ],
   imports: [
     BrowserModule,

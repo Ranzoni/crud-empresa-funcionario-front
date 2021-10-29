@@ -1,0 +1,21 @@
+<h3>Empresa {{companyName}}</h3>
+
+<h2>Cadastro de Funcionário</h2>
+
+<form [formGroup]="form" validate>
+    <div>
+        <input id="employee-name" formControlName="name" placeholder="Nome"><br />
+        <select formControlName="position">
+            <option *ngFor="let position of positions" value= {{position.id}}>
+                {{position.name}}
+            </option>
+        </select><br />
+        <input id="employee-number" formControlName="salary" placeholder="Salário"><br />
+    </div>
+</form>
+
+<button (click)="save()">Salvar</button>
+
+<div *ngIf="!isCreation">
+    <button (click)="deleteEmployee()">Apagar</button>
+</div>

@@ -26,11 +26,11 @@ export class EmployeesComponent implements OnInit {
   }
 
   goToCreateEmployee(): void {
-    this.router.navigateByUrl('employees/create');
+    this.router.navigateByUrl(`employees/create/idcompany/${this.idCompany}`);
   }
 
   goToCreateEmployeeById(id: number): void {
-    this.router.navigateByUrl(`employees/create/${id}`);
+    this.router.navigateByUrl(`employees/create/${id}/idcompany/${this.idCompany}`);
   }
 
 }

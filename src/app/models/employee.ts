@@ -5,8 +5,8 @@ export interface Employee {
     id: number;
     name: string;
     idPosition: number;
-    position: Position;
+    position?: Position;
     salary: number;
     idCompany: number;
-    company: Company;
+    company?: Company;
 }

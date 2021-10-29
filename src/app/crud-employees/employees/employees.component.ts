@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/employee';
 import { EmployeeService } from 'src/app/services/employee.service';
@@ -18,8 +18,12 @@ export class EmployeesComponent implements OnInit {
     private readonly router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     if (!!this.idCompany)
       this.employeeService.getByIdCompany(this.idCompany).subscribe(employees => {
+        this.employees = [];
         if (!!employees && employees.length > 0)
           this.employees = employees;
       });

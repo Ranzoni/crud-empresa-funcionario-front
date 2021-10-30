@@ -4,13 +4,14 @@
 
 <form [formGroup]="form" validate>
     <div>
-        <input id="employee-name" formControlName="name" placeholder="Nome"><br />
+        <input id="employee-name" formControlName="name" placeholder="Nome" maxlength="200"><br />
         <select formControlName="position">
             <option *ngFor="let position of positions" value= {{position.id}}>
                 {{position.name}}
             </option>
         </select><br />
-        <input id="employee-number" formControlName="salary" placeholder="Salário"><br />
+        <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" id="employee-number" formControlName="salary"
+            placeholder="Salário" maxlength="14"><br />
     </div>
 </form>
 

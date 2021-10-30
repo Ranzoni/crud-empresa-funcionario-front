@@ -11,6 +11,7 @@ import { EmployeesComponent } from './crud-employees/employees/employees.compone
 import { MenuComponent } from './menu/menu.component';
 import { CreateEmployeesComponent } from './crud-employees/create-employees/create-employees.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NgxMaskModule } from 'ngx-mask';
     HttpClientModule,
     ReactiveFormsModule,
     NgxMaskModule.forRoot(),
+    NgxCurrencyModule
   ],
   providers: [],
   bootstrap: [AppComponent]

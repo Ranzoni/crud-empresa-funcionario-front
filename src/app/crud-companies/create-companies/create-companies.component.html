@@ -13,17 +13,16 @@
 </div>
 
 <form [formGroup]="form" validate>
-    <div>
-        <input id="company-name" formControlName="name" placeholder="Nome" maxlength="200"><br />
-        <input id="company-street" formControlName="street" placeholder="Rua" maxlength="200"><br />
-        <input id="company-number" formControlName="number" placeholder="Número"><br />
-        <input id="company-address2" formControlName="address2" placeholder="Complemento"><br />
-        <input id="company-neighborhood" formControlName="neighborhood" placeholder="Bairro" maxlength="200"><br />
-        <input id="company-city" formControlName="city" placeholder="Cidade" maxlength="200"><br />
-        <input id="company-state" formControlName="state" placeholder="Estado" maxlength="200"><br />
-        <input id="company-zip-code" formControlName="zipCode" placeholder="CEP" maxlength="20"><button (click)="getAddressByZipCode(form.value.zipCode)">Consultar o CEP</button><br />
-        <input id="company-phone-number" formControlName="phoneNumber" placeholder="Telefone"><br />
-    </div>
+  <input id="company-name" formControlName="name" placeholder="Nome" maxlength="200"><br />
+  <input id="company-street" formControlName="street" placeholder="Rua" maxlength="200"><br />
+  <input id="company-number" formControlName="number" placeholder="Número" maxlength="10"><br />
+  <input id="company-address2" formControlName="address2" placeholder="Complemento" maxlength="200"><br />
+  <input id="company-neighborhood" formControlName="neighborhood" placeholder="Bairro" maxlength="200"><br />
+  <input id="company-city" formControlName="city" placeholder="Cidade" maxlength="200"><br />
+  <input id="company-state" formControlName="state" placeholder="Estado" maxlength="200"><br />
+  <input id="company-zip-code" formControlName="zipCode" placeholder="CEP"  mask="00000-000"><button (click)="getAddressByZipCode(form.value.zipCode)">Consultar o CEP</button><br />
+  <input id="company-phone-number" formControlName="phoneNumber" placeholder="Telefone/Celular" (change)="validatePhoeNumber($event)"
+    mask="(00) 0000-0000||(00) 0 0000-0000"><br />
 </form>
 
 <button (click)="save()">Salvar</button>

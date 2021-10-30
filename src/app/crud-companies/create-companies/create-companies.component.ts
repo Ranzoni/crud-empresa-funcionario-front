@@ -5,6 +5,7 @@ import { Address } from 'src/app/models/address';
 import { CompanyService } from 'src/app/services/company.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViaCepService } from 'src/app/services/via-cep.service';
+import { Functions } from 'src/app/shared/functions';
 
 @Component({
   selector: 'app-create-companies',
@@ -16,6 +17,7 @@ export class CreateCompaniesComponent implements OnInit {
   readonly form: FormGroup;
   private companyForm?: Company;
   public isCreation: boolean = true;
+  telMask= '(00) 0000-0000'
 
   constructor(private readonly formBuilder: FormBuilder,
       private readonly companyService: CompanyService,
@@ -63,7 +65,7 @@ export class CreateCompaniesComponent implements OnInit {
       neighborhood: this.form.value.neighborhood,
       city: this.form.value.city,
       state: this.form.value.state,
-      zipCode: this.form.value.zipCode
+      zipCode: Functions.onlyNumbers(this.form.value.zipCode)
     };
 
     let companyReturn: Company = {
@@ -71,7 +73,7 @@ export class CreateCompaniesComponent implements OnInit {
       name: this.form.value.name,
       idAddress: this.form.value.idAddress,
       address: addressCompany,
-      phoneNumber: this.form.value.phoneNumber
+      phoneNumber: Functions.onlyNumbers(this.form.value.phoneNumber)
     };
 
     return companyReturn;
@@ -187,6 +189,14 @@ export class CreateCompaniesComponent implements OnInit {
       this.form.controls['state'].setValue(address.uf);
       this.form.controls['zipCode'].setValue(address.cep);
     });
+  }
+
+  public validatePhoeNumber(event: any): void {
+    let phoneNumber = Functions.onlyNumbers(event.target.value);
+    if (phoneNumber.length > 11 || phoneNumber.length < 10) {
+      event.target.value = '';
+      alert('O número de telefone inforamdo é inválido. Ele deve conter o DDD mais o número.');
+    }
   }
 
 }

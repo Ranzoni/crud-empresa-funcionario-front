@@ -1,0 +1,7 @@
+<form [formGroup]="form" validate>
+    <input type="text" formControlName="username" placeholder="Usuário"><br /><br />
+    <input type="password" formControlName="password" placeholder="Senha"><br /><br />
+</form>
+
+<button (click)="login()">Entrar</button>
+<button>Criar usuário</button>

@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CompaniesComponent } from './crud-companies/companies/companies.component';
 import { CreateCompaniesComponent } from './crud-companies/create-companies/create-companies.component';
 import { CreateEmployeesComponent } from './crud-employees/create-employees/create-employees.component';
+import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'menu' },
-  { path: 'menu', component: MenuComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
   { path: 'companies', component: CompaniesComponent },
   { path: 'companies/create', component: CreateCompaniesComponent },
   { path: 'companies/create/:id', component: CreateCompaniesComponent },

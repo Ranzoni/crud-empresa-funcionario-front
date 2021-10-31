@@ -12,6 +12,7 @@ import { MenuComponent } from './menu/menu.component';
 import { CreateEmployeesComponent } from './crud-employees/create-employees/create-employees.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NgxCurrencyModule } from 'ngx-currency';
     CreateCompaniesComponent,
     EmployeesComponent,
     MenuComponent,
-    CreateEmployeesComponent
+    CreateEmployeesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -52,7 +52,7 @@ export class CreateCompaniesComponent implements OnInit {
       city: ['', Validators.required],
       state: ['', Validators.required],
       zipCode: ['', Validators.required],
-      phoneNumber: ['', Validators.required]
+      phoneNumber: [null]
     });
   }
 
@@ -68,12 +68,13 @@ export class CreateCompaniesComponent implements OnInit {
       zipCode: Functions.onlyNumbers(this.form.value.zipCode)
     };
 
+    let phoneNumber = Functions.onlyNumbers(this.form.value.phoneNumber);
     let companyReturn: Company = {
       id: Number(this.companyForm?.id),
       name: this.form.value.name,
       idAddress: this.form.value.idAddress,
       address: addressCompany,
-      phoneNumber: Functions.onlyNumbers(this.form.value.phoneNumber)
+      phoneNumber: !!phoneNumber ? phoneNumber : null
     };
 
     return companyReturn;
@@ -150,9 +151,11 @@ export class CreateCompaniesComponent implements OnInit {
       return;
     }
 
-    if (this.form.get('phoneNumber')?.errors?.required) {
-      alert('O telefone é obrigatório');
-      return;
+    if (!!this.form.get('phoneNumber')) {
+      if (this.form.get('phoneNumber')?.errors?.required) {
+        alert('O telefone é obrigatório');
+        return;
+      }
     }
   }
 
@@ -163,6 +166,7 @@ export class CreateCompaniesComponent implements OnInit {
   }
 
   public updateCompany(): void {
+    console.log(this.company);
     this.companyService.update(this.company).subscribe(ret => {
       this.router.navigateByUrl('companies');
     });
@@ -191,8 +195,11 @@ export class CreateCompaniesComponent implements OnInit {
     });
   }
 
-  public validatePhoeNumber(event: any): void {
+  public validatePhoneNumber(event: any): void {
     let phoneNumber = Functions.onlyNumbers(event.target.value);
+    if (!phoneNumber)
+      return;
+
     if (phoneNumber.length > 11 || phoneNumber.length < 10) {
       event.target.value = '';
       alert('O número de telefone inforamdo é inválido. Ele deve conter o DDD mais o número.');

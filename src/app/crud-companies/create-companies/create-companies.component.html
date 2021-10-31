@@ -21,7 +21,7 @@
   <input id="company-city" formControlName="city" placeholder="Cidade" maxlength="200"><br />
   <input id="company-state" formControlName="state" placeholder="Estado" maxlength="200"><br />
   <input id="company-zip-code" formControlName="zipCode" placeholder="CEP"  mask="00000-000"><button (click)="getAddressByZipCode(form.value.zipCode)">Consultar o CEP</button><br />
-  <input id="company-phone-number" formControlName="phoneNumber" placeholder="Telefone/Celular" (change)="validatePhoeNumber($event)"
+  <input id="company-phone-number" formControlName="phoneNumber" placeholder="Telefone/Celular" (change)="validatePhoneNumber($event)"
     mask="(00) 0000-0000||(00) 0 0000-0000"><br />
 </form>
 

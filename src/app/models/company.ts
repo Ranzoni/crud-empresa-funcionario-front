@@ -5,5 +5,5 @@ export interface Company {
     name: string;
     idAddress: number;
     address: Address;
-    phoneNumber: string;
+    phoneNumber: string | null;
 }

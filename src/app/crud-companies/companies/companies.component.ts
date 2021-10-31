@@ -11,21 +11,55 @@ import { CompanyService } from 'src/app/services/company.service';
 export class CompaniesComponent implements OnInit {
 
   companies: Company[] = [];
-  selectedCompany?: Company;
+  pageNumberPagination: number = 1;
+  sizePagination: number = 5;
+  totalPagination: number = 0;
 
   constructor(private companyService: CompanyService,
     private readonly router: Router) { }
 
   ngOnInit(): void {
-    this.companyService.get().subscribe(companies => this.companies = companies);
+    this.loadCompanies();
   }
 
-  goToCreateCompany(): void {
+  public goToCreateCompany(): void {
     this.router.navigateByUrl('companies/create');
   }
 
-  goToCreateCompanyById(id: number): void {
+  public goToCreateCompanyById(id: number): void {
     this.router.navigateByUrl(`companies/create/${id}`);
+  }
+
+  public showButtonPrevious(): boolean {
+    return this.pageNumberPagination > 1;
+  }
+
+  public showButtonNext(): boolean {
+    if (this.totalPagination === 0)
+      return false;
+
+    return this.totalPagination / this.sizePagination > this.pageNumberPagination;
+  }
+
+  public previous(): void {
+    this.pageNumberPagination--;
+    this.loadCompanies();
+  }
+
+  public next(): void {
+    this.pageNumberPagination++;
+    this.loadCompanies();
+  }
+
+  public loadCompanies(): void {
+    this.companyService
+      .getWithPagination(this.pageNumberPagination, this.sizePagination)
+      .subscribe(response => {
+        this.companies = response.data;
+        this.pageNumberPagination = response.page;
+        this.sizePagination = response.size;
+        this.totalPagination = response.total;
+      });
   }
 
 }

@@ -17,7 +17,6 @@ export class CreateCompaniesComponent implements OnInit {
   readonly form: FormGroup;
   private companyForm?: Company;
   public isCreation: boolean = true;
-  telMask= '(00) 0000-0000'
 
   constructor(private readonly formBuilder: FormBuilder,
       private readonly companyService: CompanyService,

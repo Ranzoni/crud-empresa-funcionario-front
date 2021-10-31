@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Employee } from '../models/employee';
@@ -12,8 +12,9 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  public getByIdCompany(idCompany: number): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.employeeUrl + '/idcompany/' + idCompany);
+  public getByIdCompany(idCompany: number, page: number, size: number): Observable<any> {
+    let params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(this.employeeUrl + '/idcompany/' + idCompany, { params: params });
   }
 
   public getById(id: number): Observable<Employee> {

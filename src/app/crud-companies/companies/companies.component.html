@@ -3,8 +3,9 @@
 <h2>Empresas</h2>
 <ul class="companies">
   <li *ngFor="let company of companies"
-    [class.selected]="company === selectedCompany"
     (click)="goToCreateCompanyById(company.id)">
     <span class="badge">{{company.id}}</span> {{company.name}}
   </li>
 </ul>
+<h5>Página: {{pageNumberPagination}}</h5>
+<button *ngIf="showButtonPrevious()" (click)="previous()">Anterior</button><button *ngIf="showButtonNext()" (click)="next()">Próxima</button>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from '../models/company';
@@ -12,8 +12,13 @@ export class CompanyService {
 
   constructor(private http: HttpClient) { }
 
-  public get(): Observable<Company[]> {
-    return this.http.get<Company[]>(this.companyUrl);
+  public get(): Observable<any> {
+    return this.http.get<any>(this.companyUrl);
+  }
+
+  public getWithPagination(page: number, size: number): Observable<any> {
+    let params = new HttpParams().set('page', page).set('size', size);
+    return this.http.get<any>(this.companyUrl + '/pagination', { params: params });
   }
 
   public getById(id: number): Observable<Company> {

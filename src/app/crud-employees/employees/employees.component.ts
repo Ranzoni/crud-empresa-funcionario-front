@@ -11,10 +11,11 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EmployeesComponent implements OnInit {
 
   @Input() idCompany: number = 0;
-  employees: Employee[] = [];
-  pageNumberPagination: number = 1;
-  sizePagination: number = 5;
-  totalPagination: number = 0;
+  public employees: Employee[] = [];
+  public pageNumberPagination: number = 1;
+  public sizePagination: number = 5;
+  public totalPagination: number = 0;
+  public employeeNameForSearch: string = '';
 
   constructor(private employeeService: EmployeeService,
     private readonly router: Router) { }
@@ -57,7 +58,7 @@ export class EmployeesComponent implements OnInit {
   }
 
   public loadEmployees(): void {
-      this.employeeService.getByIdCompany(this.idCompany, this.pageNumberPagination, this.sizePagination)
+      this.employeeService.getByIdCompany(this.idCompany, this.employeeNameForSearch, this.pageNumberPagination, this.sizePagination)
         .subscribe(response => {
           this.employees = [];
           if (!!response.data && response.data.length > 0) {
@@ -67,6 +68,11 @@ export class EmployeesComponent implements OnInit {
             this.totalPagination = response.total;
           }
         });
+  }
+
+  public employeeSearch(): void {
+    this.pageNumberPagination = 1;
+    this.loadEmployees();
   }
 
 }

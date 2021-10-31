@@ -12,8 +12,8 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  public getByIdCompany(idCompany: number, page: number, size: number): Observable<any> {
-    let params = new HttpParams().set('page', page).set('size', size);
+  public getByIdCompany(idCompany: number, companyName: string, page: number, size: number): Observable<any> {
+    let params = new HttpParams().set('name', companyName).set('page', page).set('size', size);
     return this.http.get<any>(this.employeeUrl + '/idcompany/' + idCompany, { params: params });
   }
 

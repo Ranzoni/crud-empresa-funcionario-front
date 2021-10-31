@@ -16,8 +16,8 @@ export class CompanyService {
     return this.http.get<any>(this.companyUrl);
   }
 
-  public getWithPagination(page: number, size: number): Observable<any> {
-    let params = new HttpParams().set('page', page).set('size', size);
+  public getWithPagination(companyName: string, page: number, size: number): Observable<any> {
+    let params = new HttpParams().set('name', companyName).set('page', page).set('size', size);
     return this.http.get<any>(this.companyUrl + '/pagination', { params: params });
   }
 

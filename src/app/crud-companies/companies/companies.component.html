@@ -1,6 +1,8 @@
 <button (click)="goToCreateCompany()">Cadastrar</button>
 
 <h2>Empresas</h2>
+<input id="company-name" [(ngModel)]="companyNameForSearch" placeholder="Nome da empresa">
+<button (click)="companySearch()">Pesquisar</button><br /><br />
 <ul class="companies">
   <li *ngFor="let company of companies"
     (click)="goToCreateCompanyById(company.id)">

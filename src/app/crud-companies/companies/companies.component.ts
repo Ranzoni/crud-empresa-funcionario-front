@@ -10,10 +10,11 @@ import { CompanyService } from 'src/app/services/company.service';
 })
 export class CompaniesComponent implements OnInit {
 
-  companies: Company[] = [];
-  pageNumberPagination: number = 1;
-  sizePagination: number = 5;
-  totalPagination: number = 0;
+  public companies: Company[] = [];
+  public pageNumberPagination: number = 1;
+  public sizePagination: number = 5;
+  public totalPagination: number = 0;
+  public companyNameForSearch: string = '';
 
   constructor(private companyService: CompanyService,
     private readonly router: Router) { }
@@ -53,13 +54,18 @@ export class CompaniesComponent implements OnInit {
 
   public loadCompanies(): void {
     this.companyService
-      .getWithPagination(this.pageNumberPagination, this.sizePagination)
+      .getWithPagination(this.companyNameForSearch, this.pageNumberPagination, this.sizePagination)
       .subscribe(response => {
         this.companies = response.data;
         this.pageNumberPagination = response.page;
         this.sizePagination = response.size;
         this.totalPagination = response.total;
       });
+  }
+
+  public companySearch(): void {
+    this.pageNumberPagination = 1;
+    this.loadCompanies();
   }
 
 }

@@ -1,6 +1,8 @@
 <button (click)="goToCreateEmployee()">Cadastrar Funcionário</button>
 
 <h2>Funcionários</h2>
+<input id="employee-name" [(ngModel)]="employeeNameForSearch" placeholder="Nome do Funcionário">
+<button (click)="employeeSearch()">Pesquisar</button><br /><br />
 <ul class="employees">
   <li *ngFor="let employee of employees"
     (click)="goToCreateEmployeeById(employee.id)">

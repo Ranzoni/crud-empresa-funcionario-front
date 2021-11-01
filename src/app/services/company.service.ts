@@ -9,6 +9,7 @@ import { Company } from '../models/company';
 export class CompanyService {
 
   private companyUrl = 'https://crud-empresa-funcionario.azurewebsites.net/api/Company';
+  
 
   constructor(private http: HttpClient) { }
 

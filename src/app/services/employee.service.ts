@@ -8,7 +8,7 @@ import { Employee } from '../models/employee';
 })
 export class EmployeeService {
 
-  private employeeUrl = 'https://localhost:44360/api/Employee';
+  private employeeUrl = 'https://crud-empresa-funcionario.azurewebsites.net/api/Employee';
 
   constructor(private http: HttpClient) { }
 

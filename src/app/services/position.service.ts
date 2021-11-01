@@ -8,7 +8,7 @@ import { Position } from '../models/position';
 })
 export class PositionService {
 
-  private positionUrl = 'https://localhost:44360/api/Position';
+  private positionUrl = 'https://crud-empresa-funcionario.azurewebsites.net/api/Position';
 
   constructor(private http: HttpClient) { }
 

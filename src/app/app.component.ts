@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { LoginService } from './services/login.service';
 export class AppComponent {
   title = 'Funcionários da Empresa';
 
-  constructor(private readonly loginService: LoginService) {}
+  constructor(private readonly loginService: LoginService,
+    private readonly router: Router) {}
 
   logout(): void {
     this.loginService.logout();
@@ -17,5 +19,9 @@ export class AppComponent {
 
   isLoggedIn(): boolean {
     return this.loginService.isLoggedIn();
+  }
+
+  goToHome() {
+    this.router.navigateByUrl('');
   }
 }

@@ -11,7 +11,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 })
 export class LoginService {
 
-  private loginUrl = 'https://localhost:44360/api/User';
+  private loginUrl = 'https://crud-empresa-funcionario.azurewebsites.net/api/User';
 
   constructor(private http: HttpClient,
     private readonly router: Router) { }

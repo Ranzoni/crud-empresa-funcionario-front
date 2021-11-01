@@ -1,4 +1,6 @@
 <h1>{{title}}</h1>
-<button *ngIf="isLoggedIn()" (click)="logout()">Sair</button><br />
+<button *ngIf="isLoggedIn()" (click)="logout()">Sair</button>
+<button *ngIf="isLoggedIn()" (click)="goToHome()">Home</button>
+<br />
 <hr />
 <router-outlet></router-outlet>

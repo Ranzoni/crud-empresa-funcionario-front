@@ -29,11 +29,11 @@ export class EmployeesComponent implements OnInit {
   }
 
   public goToCreateEmployee(): void {
-    this.router.navigateByUrl(`employees/create/idcompany/${this.idCompany}`);
+    this.router.navigateByUrl('employees/create');
   }
 
   public goToCreateEmployeeById(id: number): void {
-    this.router.navigateByUrl(`employees/create/${id}/idcompany/${this.idCompany}`);
+    this.router.navigateByUrl(`employees/create/${id}`);
   }
 
   public showButtonPrevious(): boolean {

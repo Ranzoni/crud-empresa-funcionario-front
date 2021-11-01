@@ -1,0 +1,14 @@
+input {
+    margin: .5rem;
+    padding: .3rem;
+}
+
+button {
+    margin: .5rem;
+    padding: .8rem;
+}
+
+select {
+    margin: .5rem;
+    padding: .3rem;
+}

@@ -1,9 +1,3 @@
-<label><b>Empresa: </b></label>
-<select id="select-companies" (change)="onChange($event)">
-    <option *ngFor="let company of companies" value= {{company.id}}>
-        {{company.name}}
-    </option>
-</select><br />
-<hr />
+<label><b>Empresa: {{idCompany}}</b></label><br /><br />
 <button (click)="goToCompanies()">Verificar Empresas</button><br />
 <app-employees [idCompany]="idCompany"></app-employees> 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Company } from '../models/company';
-import { CompanyService } from '../services/company.service';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,25 +9,17 @@ import { CompanyService } from '../services/company.service';
 })
 export class MenuComponent implements OnInit {
 
-  companies: Company[] = [];
-  idCompany: number = 3;
+  idCompany: number = 0;
 
   constructor(private readonly router: Router,
-    private readonly companyService: CompanyService) { }
+    private readonly loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.companyService.get().subscribe(companies => {
-      this.companies = companies;
-      this.idCompany = companies[0].id;
-    });
+    this.idCompany = this.loginService.idCompany;
   }
 
   goToCompanies(): void {
     this.router.navigateByUrl('companies');
-  }
-
-  onChange(event: any): void {
-    this.idCompany = event.target.value;
   }
 
 }

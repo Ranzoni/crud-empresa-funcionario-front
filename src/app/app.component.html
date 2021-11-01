@@ -1,2 +1,4 @@
 <h1>{{title}}</h1>
+<button *ngIf="isLoggedIn()" (click)="logout()">Sair</button><br />
+<hr />
 <router-outlet></router-outlet>

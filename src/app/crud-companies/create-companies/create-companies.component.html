@@ -1,17 +1,5 @@
 <h2>Cadastro de Empresa</h2>
 
-<div *ngIf="form.invalid"
-    class="alert">
-
-  <div *ngIf="form.value.name.errors?.required">
-    O nome é obrigatório
-  </div>
-  <div *ngIf="form.value.name.errors?.maxlength">
-    O nome tem que ter no máximo 200 caracteres
-  </div>
-
-</div>
-
 <form [formGroup]="form" validate>
   <input id="company-name" formControlName="name" placeholder="Nome" maxlength="200"><br />
   <input id="company-zip-code" formControlName="zipCode" placeholder="CEP"  mask="00000-000"><button (click)="getAddressByZipCode(form.value.zipCode)">Consultar o CEP</button><br />

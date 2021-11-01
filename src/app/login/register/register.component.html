@@ -1,0 +1,11 @@
+<form [formGroup]="form" validate>
+    <input id="username" formControlName="username" placeholder="Usuário" maxlength="20"><br />
+    <input type="password" id="password" formControlName="password" placeholder="Senha" maxlength="15"><br />
+    <select id="select-companies" formControlName="company">
+        <option *ngFor="let company of companies" value= {{company.id}}>
+            {{company.name}}
+        </option>
+    </select><br />
+</form>
+
+<button (click)="register()">Cadastrar</button>

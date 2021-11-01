@@ -5,6 +5,7 @@ import { Employee } from 'src/app/models/employee';
 import { Position } from 'src/app/models/position';
 import { CompanyService } from 'src/app/services/company.service';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { LoginService } from 'src/app/services/login.service';
 import { PositionService } from 'src/app/services/position.service';
 
 @Component({
@@ -24,6 +25,7 @@ export class CreateEmployeesComponent implements OnInit {
   constructor(private readonly formBuilder: FormBuilder,
       private readonly employeeService: EmployeeService,
       private readonly companyService: CompanyService,
+      private readonly loginService: LoginService,
       private readonly router: Router,
       private readonly activatedRoute: ActivatedRoute,
       private readonly positionService: PositionService) {
@@ -69,13 +71,10 @@ export class CreateEmployeesComponent implements OnInit {
     });
 
     this.activatedRoute.params.subscribe(params => {
-      if (params['idcompany']) {
-        this.idCompany = params['idcompany'];
-        this.companyService.getById(this.idCompany).subscribe(company => {
-          if (!!company)
-            this.companyName = company.name;
-        });
-      }
+      this.idCompany = this.loginService.idCompany;
+      this.companyService.getById(this.idCompany).subscribe(company => {
+        this.companyName = company.name;
+      });
       
       if (params['id']) {
         this.isCreation = false;

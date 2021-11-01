@@ -165,7 +165,6 @@ export class CreateCompaniesComponent implements OnInit {
   }
 
   public updateCompany(): void {
-    console.log(this.company);
     this.companyService.update(this.company).subscribe(ret => {
       this.router.navigateByUrl('companies');
     });

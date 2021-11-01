@@ -1,7 +1,13 @@
 <form [formGroup]="form" validate>
     <input type="text" formControlName="username" placeholder="Usuário"><br /><br />
     <input type="password" formControlName="password" placeholder="Senha"><br /><br />
+    <label><b>Empresa: </b></label>
+    <select id="select-companies" formControlName="company">
+        <option *ngFor="let company of companies" value= {{company.id}}>
+            {{company.name}}
+        </option>
+    </select><br /><br />
 </form>
 
 <button (click)="login()">Entrar</button>
-<button>Criar usuário</button>
+<button (click)="registerUser()">Criar usuário</button>
